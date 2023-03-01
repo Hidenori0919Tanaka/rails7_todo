@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    build: .
+    build: ./docker
     # 毎回 rm tmp/pids/server.pid するのも手間であるため、・事前に手元で/tmp/pids/server.pidを削除する
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
     volumes:
