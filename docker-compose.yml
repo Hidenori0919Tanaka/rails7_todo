@@ -3,9 +3,11 @@ services:
   web:
     build: ./docker/rails
     # 毎回 rm tmp/pids/server.pid するのも手間であるため、・事前に手元で/tmp/pids/server.pidを削除する
-    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
+    #command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && rails server -p 3000 -b '0.0.0.0'"
     volumes:
       - ./app:/app
+      - bundle:/usr/local/bundle
     ports:
       - 3001:3001
     depends_on:
@@ -32,3 +34,4 @@ services:
 # コンテナを作り直したとしてもPC上に残るようにするために設定
 volumes:
   db-volume:
+  bundle:
